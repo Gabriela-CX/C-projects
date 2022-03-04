@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define TAM 70
+// Declaración de 2 variables tipo archivo.
+FILE *archivo_1, *archivo_2;
+char cadena[] = "Hola curso "; // Cadena de caracteres
+char vacio = ' ';
+char dato = 0;
+
+int main(){
+printf("El programa crea o abre un archivo y aniade en el \n");
+/**Abre el archivo en modo adición, si no existe lo crea**/
+archivo_1 = fopen("Archivos_en_C.txt", "a");
+/**Escribe en el archivo el texto del cadena**/
+fprintf(archivo_1, "%s", cadena);
+fprintf(archivo_1, "%s", "Aca va la cadena que quiera guardar.");
+fprintf(archivo_1, "%d", 23456);
+fprintf(archivo_1, "%c", vacio);
+fprintf(archivo_1, "%c", '\n');
+/**Pregunta por un nombre, lo lee y lo escribe en el archivo**/
+printf("Por favor ingrese un nombre para guardar en el archivo y posteriormente 'Ctrl + Z para terminar el ingreso \n");
+// Lectura de la información ingresada por pantalla.
+while((dato = getchar()) != EOF){
+fputc(dato, archivo_1);
+}
+/**Cierra el archivo**/
+fclose(archivo_1);
+/**Abre el archivo en modo lectura**/
+//archivo_1 = fopen("Archivos_en_C.txt", "r");
+archivo_2 = fopen("C:\\Users\\rodri\\Documents\\Hora cátedra\\Samsung\\Lenguaje C\\Lectura.txt", "r");
+if(archivo_1 == NULL){
+printf("Error en la apertura del archivo. \n");
+return 0;
+}
+if(archivo_2 == NULL){
+printf("Error en la apertura del archivo. \n");
+return 0;
+}
+puts("**********************************************");
+/**Imprime el contenido del archivo_1**/
+printf("El archivo_2 contienen el siguiente texto: \n");
+while((dato = fgetc(archivo_2)) != EOF){
+if(dato == '\n'){
+printf("\n");
+}
+else{
+putchar(dato);
+}
+
+ }
+/**Cierra el archivo**/
+fclose(archivo_1);
+fclose(archivo_2);
+return 0;
+}
